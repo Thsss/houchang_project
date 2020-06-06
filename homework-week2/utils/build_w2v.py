@@ -49,7 +49,7 @@ def build(train_x_seg_path, test_y_seg_path, test_seg_path, out_path=None, sente
     """
     # print(type(sentences))
     # print(sentences)
-    sentence = LineSentence(sentences)
+    sentence = LineSentence(sentence_path)
     w2v = Word2Vec(sentence, size = 256, sg = 1, min_count = 4, workers = 4)
     w2v.wv.save_word2vec_format(w2v_bin_path, binary=True)
     print("save %s ok." % w2v_bin_path)

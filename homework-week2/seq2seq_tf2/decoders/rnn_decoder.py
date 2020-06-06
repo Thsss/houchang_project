@@ -56,7 +56,8 @@ class Decoder(tf.keras.layers.Layer):
         定义单向的RNN、GRU、LSTM层
         your code
         """
-        self.gru= tf.keras.layers.GRU(self.dec_units, activation='tanh', return_state=True, return_sequences=True)
+        self.gru= tf.keras.layers.GRU(self.dec_units, return_state=True,
+                                      return_sequences=True, recurrent_initializer='glorot_uniform')
         # self.dropout = tf.keras.layers.Dropout(0.5)
         """
         定义最后的fc层，用于预测词的概率

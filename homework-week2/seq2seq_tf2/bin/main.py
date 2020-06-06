@@ -76,10 +76,10 @@ def main():
     args = parser.parse_args()
     params = vars(args)
 
-    # gpus = tf.config.experimental.list_physical_devices(device_type='GPU')
-    #
-    # if gpus:
-    #     tf.config.experimental.set_visible_devices(devices=gpus[0], device_type='GPU')
+    gpus = tf.config.experimental.list_physical_devices(device_type='GPU')
+
+    if gpus:
+        tf.config.experimental.set_visible_devices(devices=gpus[0], device_type='GPU')
 
     if params["mode"] == "train":
         params["steps_per_epoch"] = NUM_SAMPLES//params["batch_size"]

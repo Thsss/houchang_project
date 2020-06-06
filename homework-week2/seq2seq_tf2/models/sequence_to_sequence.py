@@ -27,7 +27,7 @@ class SequenceToSequence(tf.keras.Model):
         # [batch_sz, max_train_x, enc_units], [batch_sz, enc_units]
         enc_output, enc_hidden = self.encoder(enc_inp, enc_hidden)
         return enc_output, enc_hidden
-    
+
     def call(self, enc_output, dec_inp, dec_hidden, dec_tar):
         predictions = []
         attentions = []
@@ -41,9 +41,9 @@ class SequenceToSequence(tf.keras.Model):
             your code
             如：xxx = self.decoder(), 采用Teachering Forcing方法
             """
-            pred, dec_hidden, _ = self.decoder(dec_inp, dec_hidden, enc_output)
+            _, pred, dec_hidden = self.decoder(tf.expand_dims(dec_inp[:, t], 1), dec_hidden, enc_output, context_vector)
             context_vector, attn_dist = self.attention(dec_hidden, enc_output)
-            
+
             predictions.append(pred)
             attentions.append(attn_dist)
 
